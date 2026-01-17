@@ -1,165 +1,115 @@
 import streamlit as st
 
-# Configuración de página estilo móvil
+# Configuración estilo App
 st.set_page_config(page_title="Colbún Digital", layout="centered")
 
-# CSS Profesional con mejor contraste y más lugares
 st.markdown("""
     <style>
-    /* Ocultar elementos innecesarios */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
+    .stApp { background: linear-gradient(180deg, #1e3a8a 0%, #f8fafc 20%); }
     
-    /* Fondo con degradado azul oscuro para que resalte la marca */
-    .stApp {
-        background: linear-gradient(180deg, #0f172a 0%, #f8fafc 25%);
-    }
-    
-    /* Título principal con sombra para legibilidad */
-    .main-title {
+    /* Reseña de la Comuna */
+    .resena-box {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
         color: white;
-        text-align: center;
-        font-weight: 800;
-        font-size: 2.2rem;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        margin-bottom: 0;
-        padding-top: 10px;
+        margin-bottom: 30px;
+        border: 1px solid rgba(255,255,255,0.2);
     }
     
-    .sub-title {
-        color: #94a3b8;
-        text-align: center;
-        font-size: 0.9rem;
-        margin-bottom: 20px;
-    }
-
-    /* Tarjetas Premium */
+    /* Tarjetas */
     .card {
         background-color: white;
         border-radius: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        overflow: hidden;
         border: 1px solid #e2e8f0;
     }
-    
-    .card-img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-    }
-    
-    .card-body { padding: 18px; }
-    
-    /* Texto dentro de tarjetas (Oscuro para legibilidad) */
-    .card-name {
-        font-size: 1.3rem;
-        font-weight: bold;
-        color: #1e293b;
-        margin-bottom: 4px;
-    }
-    
-    .card-desc {
-        color: #475569;
-        font-size: 0.9rem;
-        line-height: 1.4;
-        margin-bottom: 12px;
-    }
-    
-    .price-badge {
-        background-color: #10b981;
-        color: white;
-        padding: 4px 12px;
-        border-radius: 99px;
-        font-weight: bold;
-        font-size: 0.85rem;
-        float: right;
-    }
-    
-    .tag {
-        background-color: #f1f5f9;
-        color: #334155;
-        padding: 4px 10px;
-        border-radius: 8px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        margin-right: 5px;
-        display: inline-block;
-    }
+    .card-body { padding: 20px; }
+    .card-name { font-size: 1.4rem; font-weight: bold; color: #1e293b; }
+    .price-badge { background-color: #10b981; color: white; padding: 4px 12px; border-radius: 99px; float: right; font-weight: bold; }
     </style>
     """, unsafe_allow_html=True)
 
-# Encabezado
-st.markdown("<h1 class='main-title'>COLBÚN DIGITAL</h1>", unsafe_allow_html=True)
-st.markdown("<p class='sub-title'>Desarrollado por Maestro Solution</p>", unsafe_allow_html=True)
+# 1. ENCABEZADO Y RESEÑA
+st.markdown("<h1 style='text-align: center; color: white; margin-bottom:0;'>🏔️ COLBÚN DIGITAL</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #cbd5e1; font-size: 0.8rem;'>MAESTRO SOLUTION TECH</p>", unsafe_allow_html=True)
 
-# Buscador
-search = st.text_input("", placeholder="🔍 Buscar termas, parques, lagos...")
+st.markdown("""
+<div class="resena-box">
+    <h3 style='color: white; margin-top:0;'>Bienvenido al Corazón del Maule</h3>
+    <p style='font-size: 0.95rem; line-height: 1.5;'>
+        Colbún, que en mapudungún significa "Limpiar con agua", es una comuna donde la naturaleza y la tradición se abrazan. 
+        Desde sus famosas aguas termales curativas hasta el arte milenario del tejido en crin en Rari, 
+        este territorio ofrece una experiencia única de desconexión y cultura en la precordillera de Linares.
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
-# Base de datos ampliada de Colbún
+# 2. BASE DE DATOS CON MÚLTIPLES FOTOS
 lugares = [
     {
-        "nombre": "Lago Machicura",
-        "desc": "Playa inclusiva con excelentes instalaciones. Ideal para kayak y natación segura.",
-        "precio": "$3.500",
-        "img": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500&q=80",
-        "tags": ["Familiar", "Playa"]
-    },
-    {
         "nombre": "Termas de Panimávida",
-        "desc": "Tradición y relax en el corazón de Colbún. Famosas por sus aguas mineromedicinales.",
+        "desc": "Aguas mineromedicinales y arquitectura histórica. Un refugio de salud desde el siglo XIX.",
         "precio": "$45.000",
-        "img": "https://images.unsplash.com/photo-1544161515-4ae6ce6ca606?w=500&q=80",
-        "tags": ["Salud", "Spa"]
+        "fotos": [
+            "https://images.unsplash.com/photo-1544161515-4ae6ce6ca606?w=500",
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=500"
+        ],
+        "tags": ["Salud", "Cultura"]
     },
     {
-        "nombre": "Reserva Los Bellotos",
-        "desc": "Naturaleza pura en el Cajón del Melado. Protege el escaso Belloto del Sur.",
+        "nombre": "Artesanía en Crin (Rari)",
+        "desc": "Tesoro Humano Vivo. Figuras tejidas con pelo de caballo, únicas en el mundo.",
         "precio": "Gratis",
-        "img": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&q=80",
-        "tags": ["Trekking", "Nativo"]
+        "fotos": [
+            "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500",
+            "https://images.unsplash.com/photo-1515516089376-88db1e26e9c0?w=500"
+        ],
+        "tags": ["Artesanía", "Patrimonio"]
     },
     {
-        "nombre": "Artesanía de Rari",
-        "desc": "Conoce a las maestras del crin de caballo. Patrimonio cultural único en el mundo.",
-        "precio": "Gratis",
-        "img": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&q=80",
-        "tags": ["Cultura", "Artesanía"]
-    },
-    {
-        "nombre": "Parque Natural Tricahue",
-        "desc": "Bosque nativo y avistamiento de Loros Tricahue. Ideal para ecoturismo.",
-        "precio": "$5.000",
-        "img": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=500&q=80",
-        "tags": ["Fauna", "Bosque"]
-    },
-    {
-        "nombre": "Embalse Colbún",
-        "desc": "El embalse más grande de la zona central. Perfecto para windsurf y pesca.",
-        "precio": "Libre",
-        "img": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500&q=80",
-        "tags": ["Deportes", "Pesca"]
+        "nombre": "Lago Machicura",
+        "desc": "Playa pública inclusiva. Perfecta para el verano, deportes náuticos y recreación.",
+        "precio": "$3.500",
+        "fotos": [
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500",
+            "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500"
+        ],
+        "tags": ["Playa", "Familia"]
     }
 ]
 
-# Mostrar tarjetas filtradas
+# 3. BUSCADOR
+search = st.text_input("", placeholder="🔍 ¿Qué quieres descubrir hoy?")
+
+# 4. RENDERIZADO
 for l in lugares:
     if search.lower() in l["nombre"].lower() or search.lower() in l["desc"].lower():
-        st.markdown(f"""
-            <div class="card">
-                <img src="{l['img']}" class="card-img">
-                <div class="card-body">
-                    <span class="price-badge">{l['precio']}</span>
-                    <div class="card-name">{l['nombre']}</div>
-                    <p class="card-desc">{l['desc']}</p>
-                    <div>
-                        {' '.join([f'<span class="tag">{t}</span>' for t in l['tags']])}
+        with st.container():
+            st.markdown(f"""
+                <div class="card">
+                    <div class="card-body">
+                        <span class="price-badge">{l['precio']}</span>
+                        <div class="card-name">{l['nombre']}</div>
+                        <p style='color: #64748b; margin-bottom: 15px;'>{l['desc']}</p>
                     </div>
                 </div>
-            </div>
-        """, unsafe_allow_html=True)
-        if st.button(f"📍 Ver Mapa: {l['nombre']}", key=l['nombre']):
-            st.toast(f"Cargando ruta a {l['nombre']}...")
+            """, unsafe_allow_html=True)
+            
+            # Galería de imágenes (más de una fotografía)
+            cols = st.columns(len(l["fotos"]))
+            for i, img_url in enumerate(l["fotos"]):
+                cols[i].image(img_url, use_container_width=True)
+            
+            st.markdown("---")
 
-# Navegación inferior
-st.markdown("<br><p style='text-align: center; color: #64748b;'>🏠 Inicio | 📍 Mapa | 🎫 Cupones | 👤 Perfil</p>", unsafe_allow_html=True)
+# 5. BARRA DE SEGURIDAD (VALOR PARA EL MUNICIPIO)
+with st.expander("⚠️ ESTADO DE RUTAS Y SEGURIDAD"):
+    st.info("Ruta L-11 (Panimávida): Transitable con precaución.")
+    st.success("Playa Machicura: Apta para el baño (Banderas Verdes).")
+    st.warning("Cordillera: Se recomienda porte de cadenas para subir al Melado.")
+
+st.markdown("<p style='text-align: center; color: #94a3b8;'>🏠 Inicio | 📍 Mapa | 🎫 Cupones</p>", unsafe_allow_html=True)

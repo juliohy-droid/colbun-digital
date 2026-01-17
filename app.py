@@ -1,129 +1,165 @@
 import streamlit as st
 
-# Configuración de página para que parezca una App
-st.set_page_config(page_title="Colbún Digital", layout="centered", initial_sidebar_state="collapsed")
+# Configuración de página estilo móvil
+st.set_page_config(page_title="Colbún Digital", layout="centered")
 
-# CSS Avanzado para diseño atractivo y moderno
+# CSS Profesional con mejor contraste y más lugares
 st.markdown("""
     <style>
-    /* Ocultar elementos de Streamlit */
+    /* Ocultar elementos innecesarios */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    header {visibility: hidden;}
     
-    /* Fondo degradado estilo moderno */
+    /* Fondo con degradado azul oscuro para que resalte la marca */
     .stApp {
-        background: linear-gradient(180deg, #1a73e8 0%, #f8f9fa 30%);
+        background: linear-gradient(180deg, #0f172a 0%, #f8fafc 25%);
     }
     
-    /* Contenedor de Tarjeta Estilo Premium */
-    .card {
-        background-color: white;
-        border-radius: 25px;
-        margin-bottom: 25px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        overflow: hidden;
-        transition: transform 0.3s;
-    }
-    .card:hover { transform: scale(1.02); }
-    
-    .card-img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-    
-    .card-body { padding: 20px; }
-    
-    .card-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #1e3a8a;
-        margin-bottom: 5px;
-    }
-    
-    .price-badge {
-        background-color: #34d399;
-        color: white;
-        padding: 5px 15px;
-        border-radius: 50px;
-        font-weight: bold;
-        float: right;
-    }
-    
-    .benefit-icon {
-        background-color: #dbeafe;
-        color: #1e40af;
-        padding: 5px 12px;
-        border-radius: 10px;
-        font-size: 0.8rem;
-        margin-right: 5px;
-        display: inline-block;
-        margin-top: 10px;
-    }
-    
-    /* Título principal blanco */
+    /* Título principal con sombra para legibilidad */
     .main-title {
         color: white;
         text-align: center;
-        font-family: 'Arial';
-        padding-top: 20px;
+        font-weight: 800;
+        font-size: 2.2rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         margin-bottom: 0;
+        padding-top: 10px;
+    }
+    
+    .sub-title {
+        color: #94a3b8;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    /* Tarjetas Premium */
+    .card {
+        background-color: white;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .card-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+    
+    .card-body { padding: 18px; }
+    
+    /* Texto dentro de tarjetas (Oscuro para legibilidad) */
+    .card-name {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #1e293b;
+        margin-bottom: 4px;
+    }
+    
+    .card-desc {
+        color: #475569;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 12px;
+    }
+    
+    .price-badge {
+        background-color: #10b981;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 99px;
+        font-weight: bold;
+        font-size: 0.85rem;
+        float: right;
+    }
+    
+    .tag {
+        background-color: #f1f5f9;
+        color: #334155;
+        padding: 4px 10px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-right: 5px;
+        display: inline-block;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# Encabezado de la App
+# Encabezado
 st.markdown("<h1 class='main-title'>COLBÚN DIGITAL</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: rgba(255,255,255,0.8);'>Desarrollado por Maestro Solution</p>", unsafe_allow_html=True)
+st.markdown("<p class='sub-title'>Desarrollado por Maestro Solution</p>", unsafe_allow_html=True)
 
-# Datos con imágenes reales de alta disponibilidad
+# Buscador
+search = st.text_input("", placeholder="🔍 Buscar termas, parques, lagos...")
+
+# Base de datos ampliada de Colbún
 lugares = [
     {
         "nombre": "Lago Machicura",
-        "desc": "Playa inclusiva perfecta para familias. Kayak y zonas de picnic.",
+        "desc": "Playa inclusiva con excelentes instalaciones. Ideal para kayak y natación segura.",
         "precio": "$3.500",
-        "imagen": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-        "tags": ["Familiar", "Seguro"]
+        "img": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500&q=80",
+        "tags": ["Familiar", "Playa"]
     },
     {
         "nombre": "Termas de Panimávida",
-        "desc": "Aguas termales curativas en un entorno histórico y relajante.",
+        "desc": "Tradición y relax en el corazón de Colbún. Famosas por sus aguas mineromedicinales.",
         "precio": "$45.000",
-        "imagen": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80",
-        "tags": ["Salud", "Relax"]
+        "img": "https://images.unsplash.com/photo-1544161515-4ae6ce6ca606?w=500&q=80",
+        "tags": ["Salud", "Spa"]
     },
     {
-        "nombre": "Rari: Cuna del Crin",
-        "desc": "Artesanía única en el mundo hecha a mano con pelo de caballo.",
+        "nombre": "Reserva Los Bellotos",
+        "desc": "Naturaleza pura en el Cajón del Melado. Protege el escaso Belloto del Sur.",
         "precio": "Gratis",
-        "imagen": "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=800&q=80",
-        "tags": ["Cultura", "Patrimonio"]
+        "img": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&q=80",
+        "tags": ["Trekking", "Nativo"]
+    },
+    {
+        "nombre": "Artesanía de Rari",
+        "desc": "Conoce a las maestras del crin de caballo. Patrimonio cultural único en el mundo.",
+        "precio": "Gratis",
+        "img": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&q=80",
+        "tags": ["Cultura", "Artesanía"]
+    },
+    {
+        "nombre": "Parque Natural Tricahue",
+        "desc": "Bosque nativo y avistamiento de Loros Tricahue. Ideal para ecoturismo.",
+        "precio": "$5.000",
+        "img": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=500&q=80",
+        "tags": ["Fauna", "Bosque"]
+    },
+    {
+        "nombre": "Embalse Colbún",
+        "desc": "El embalse más grande de la zona central. Perfecto para windsurf y pesca.",
+        "precio": "Libre",
+        "img": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500&q=80",
+        "tags": ["Deportes", "Pesca"]
     }
 ]
 
-# Buscador con diseño limpio
-search = st.text_input("", placeholder="🔍 ¿Qué buscas hoy en Colbún?")
-
-# Renderizado de la lista
-for lug in lugares:
-    if search.lower() in lug["nombre"].lower() or search.lower() in lug["desc"].lower():
+# Mostrar tarjetas filtradas
+for l in lugares:
+    if search.lower() in l["nombre"].lower() or search.lower() in l["desc"].lower():
         st.markdown(f"""
             <div class="card">
-                <img src="{lug['imagen']}" class="card-img">
+                <img src="{l['img']}" class="card-img">
                 <div class="card-body">
-                    <span class="price-badge">{lug['precio']}</span>
-                    <div class="card-title">{lug['nombre']}</div>
-                    <p style='color: #4b5563;'>{lug['desc']}</p>
+                    <span class="price-badge">{l['precio']}</span>
+                    <div class="card-name">{l['nombre']}</div>
+                    <p class="card-desc">{l['desc']}</p>
                     <div>
-                        {' '.join([f'<span class="benefit-icon">{t}</span>' for t in lug['tags']])}
+                        {' '.join([f'<span class="tag">{t}</span>' for t in l['tags']])}
                     </div>
                 </div>
             </div>
         """, unsafe_allow_html=True)
-        if st.button(f"Explorar {lug['nombre']}", key=lug['nombre']):
-            st.balloons()
-            st.info(f"Abriendo guía completa de {lug['nombre']}...")
+        if st.button(f"📍 Ver Mapa: {l['nombre']}", key=l['nombre']):
+            st.toast(f"Cargando ruta a {l['nombre']}...")
 
-# Barra de navegación estética al final
-st.markdown("<br><p style='text-align: center; color: #9ca3af;'>🏠 Inicio | 📍 Mapa | 🎟️ Cupones</p>", unsafe_allow_html=True)
+# Navegación inferior
+st.markdown("<br><p style='text-align: center; color: #64748b;'>🏠 Inicio | 📍 Mapa | 🎫 Cupones | 👤 Perfil</p>", unsafe_allow_html=True)

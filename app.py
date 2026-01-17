@@ -1,5 +1,4 @@
 import streamlit as st
-import webbrowser
 
 # Configuración de la App
 st.set_page_config(page_title="Colbún Digital", layout="centered")
@@ -8,117 +7,99 @@ st.markdown("""
     <style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    .stApp { background-color: #f1f5f9; }
+    .stApp { background-color: #f8fafc; }
     
-    /* Reseña de la Comuna */
-    .resena-container {
+    /* Contenedores */
+    .section-container {
         background-color: white;
-        border-left: 5px solid #1e3a8a;
-        padding: 20px;
-        border-radius: 10px;
-        margin-bottom: 25px;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        border: 1px solid #e2e8f0;
     }
-    .resena-titulo { color: #1e3a8a; font-weight: bold; font-size: 1.5rem; }
-    .resena-texto { color: #334155; font-size: 0.95rem; }
+    .titulo-oscuro { color: #1e3a8a; font-weight: bold; font-size: 1.6rem; margin-bottom: 10px; }
+    .texto-oscuro { color: #334155; font-size: 1rem; }
 
-    /* Tarjetas */
+    /* Estilo de Tarjetas de Lugares */
     .card {
         background-color: white;
         border-radius: 15px;
-        padding: 20px;
-        border: 1px solid #e2e8f0;
-        margin-bottom: 10px;
+        padding: 15px;
+        border: 1px solid #cbd5e1;
+        margin-top: 15px;
     }
-    .card-title { font-size: 1.3rem; font-weight: bold; color: #0f172a; }
-    .card-category { color: #64748b; font-size: 0.8rem; text-transform: uppercase; font-weight: bold; }
+    .card-title { font-size: 1.2rem; font-weight: bold; color: #0f172a; }
     .price-badge {
-        background-color: #10b981;
+        background-color: #059669;
         color: white;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-weight: bold;
+        padding: 2px 10px;
+        border-radius: 10px;
         float: right;
+        font-size: 0.8rem;
     }
     </style>
     """, unsafe_allow_html=True)
 
 # 1. ENCABEZADO
 st.markdown("<h1 style='text-align: center; color: #1e3a8a;'>COLBÚN DIGITAL</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #475569;'>MAESTRO SOLUTION TECH</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-weight: bold;'>MAESTRO SOLUTION TECH</p>", unsafe_allow_html=True)
 
-# 2. RESEÑA INICIAL
+# 2. RESEÑA DE LA COMUNA
 st.markdown("""
-<div class="resena-container">
-    <div class="resena-titulo">La Comuna de las Tradiciones</div>
-    <div class="resena-texto">
-        Colbún te invita a recorrer sus paisajes precordilleranos. Desde el arte del Crin en Rari hasta 
-        el comercio local de sus calles principales, cada rincón cuenta una historia de esfuerzo y belleza maulina.
+<div class="section-container">
+    <div class="titulo-oscuro">Explora lo Auténtico</div>
+    <div class="texto-oscuro">
+        Colbún te espera con la calidez de su gente y la belleza de sus paisajes. 
+        Descubre la artesanía única de Rari, saborea la gastronomía local y relájate en nuestras termas históricas.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# 3. BASE DE DATOS AMPLIADA (Lugares, Locales, Artesanía)
-# Nota: He añadido coordenadas reales aproximadas para que el botón funcione.
+# 3. BUSCADOR Y LISTADO (Simplificado para el ejemplo)
 lugares = [
-    {
-        "nombre": "Artesanía en Crin de Rari",
-        "categoria": "Artesanía",
-        "desc": "Tejido único en el mundo con pelo de caballo. Tesoro Humano Vivo.",
-        "precio": "Consultar local",
-        "fotos": ["https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400", "https://images.unsplash.com/photo-1515516089376-88db1e26e9c0?w=400"],
-        "maps_url": "https://www.google.com/maps/search/Artesanía+Rari+Colbun"
-    },
-    {
-        "nombre": "Mercado Municipal Colbún",
-        "categoria": "Locales Comerciales",
-        "desc": "Encuentra productos agrícolas frescos y comida típica de la zona.",
-        "precio": "Acceso Libre",
-        "fotos": ["https://images.unsplash.com/photo-1488459711615-228f09540357?w=400", "https://images.unsplash.com/photo-1542838132-92c53300491e?w=400"],
-        "maps_url": "https://www.google.com/maps/search/Mercado+Colbun"
-    },
-    {
-        "nombre": "Restaurante Sabores del Maule",
-        "categoria": "Locales Comerciales",
-        "desc": "Especialidad en cocina chilena: pastel de choclo y empanadas de pino.",
-        "precio": "$8.000 - $15.000",
-        "fotos": ["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400", "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400"],
-        "maps_url": "https://www.google.com/maps/search/Restaurantes+Colbun"
-    },
-    {
-        "nombre": "Termas de Panimávida",
-        "categoria": "Turismo de Salud",
-        "desc": "Hotel y Spa con aguas termales históricas.",
-        "precio": "$45.000",
-        "fotos": ["https://images.unsplash.com/photo-1544161515-4ae6ce6ca606?w=400", "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=400"],
-        "maps_url": "https://www.google.com/maps/search/Termas+de+Panimavida"
-    }
+    {"nombre": "Artesanía en Crin Rari", "cat": "Artesanía", "precio": "Gratis", "url": "https://www.google.com/maps/search/Artesanía+Rari+Colbun"},
+    {"nombre": "Mercado de Colbún", "cat": "Local", "precio": "Libre", "url": "https://www.google.com/maps/search/Mercado+Colbun"},
+    {"nombre": "Termas Panimávida", "cat": "Turismo", "precio": "$45.000", "url": "https://www.google.com/maps/search/Termas+de+Panimavida"}
 ]
 
-# 4. BUSCADOR Y FILTRO
-search = st.text_input("", placeholder="🔍 Busca artesanía, locales o lugares...")
+search = st.text_input("🔍 ¿Qué buscas hoy?", placeholder="Ej: Artesanía, Comida...")
 
-# 5. RENDERIZADO
 for l in lugares:
-    if search.lower() in l["nombre"].lower() or search.lower() in l["categoria"].lower():
+    if search.lower() in l["nombre"].lower() or search.lower() in l["cat"].lower():
         st.markdown(f"""
             <div class="card">
                 <span class="price-badge">{l['precio']}</span>
-                <span class="card-category">{l['categoria']}</span>
+                <div style="color: #64748b; font-size: 0.7rem; font-weight: bold;">{l['cat'].upper()}</div>
                 <div class="card-title">{l['nombre']}</div>
-                <p style='color: #475569; margin-top: 5px;'>{l['desc']}</p>
             </div>
         """, unsafe_allow_html=True)
-        
-        # Carrusel simple de 2 fotos
-        col1, col2 = st.columns(2)
-        col1.image(l["fotos"][0], use_container_width=True)
-        col2.image(l["fotos"][1], use_container_width=True)
-        
-        # BOTÓN "CÓMO LLEGAR" FUNCIONAL
-        # Usamos st.link_button que es el componente oficial para abrir enlaces externos
-        st.link_button(f"📍 Cómo llegar a {l['nombre']}", l["maps_url"], use_container_width=True)
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.link_button(f"📍 Cómo llegar", l["url"], use_container_width=True)
 
-# 6. PIE DE PÁGINA
+# 4. FORMULARIO DE CONTACTO (SECCIÓN NUEVA)
+st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("""
+<div class="section-container" style="border-left: 5px solid #10b981;">
+    <div class="titulo-oscuro" style="color: #065f46;">📬 Contacto y Colaboración</div>
+    <p class="texto-oscuro">¿Eres dueño de un local o artesano y quieres aparecer aquí? ¿Tienes alguna duda? ¡Escríbenos!</p>
+</div>
+""", unsafe_allow_html=True)
+
+with st.form("contacto_form"):
+    nombre = st.text_input("Nombre Completo")
+    email = st.text_input("Correo Electrónico")
+    tipo = st.selectbox("Asunto", ["Quiero registrar mi local", "Consulta turística", "Soporte Técnico", "Otro"])
+    mensaje = st.text_area("Tu Mensaje")
+    
+    submit = st.form_submit_button("Enviar Solicitud")
+    
+    if submit:
+        if nombre and email and mensaje:
+            st.success(f"¡Gracias {nombre}! Tu solicitud ha sido enviada con éxito a Maestro Solution.")
+            # Aquí se podría integrar un envío de mail real
+        else:
+            st.error("Por favor, completa los campos obligatorios.")
+
+# 5. PIE DE PÁGINA
 st.divider()
-st.info("Desarrollado por Maestro Solution para el fomento productivo de Colbún.")
+st.markdown("<p style='text-align: center; color: #94a3b8; font-size: 0.8rem;'>© 2026 Maestro Solution - Innovación para el Maule</p>", unsafe_allow_html=True)

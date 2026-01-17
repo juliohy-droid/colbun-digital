@@ -1,95 +1,139 @@
 import streamlit as st
 
-# 1. CONFIGURACIÓN
+# 1. CONFIGURACIÓN DE PÁGINA
 st.set_page_config(page_title="Guía Colbún Digital", layout="centered")
 
-# 2. CSS PARA FILA DE ICONOS Y DISEÑO
+# 2. CSS AVANZADO (Color, Tarjetas e Iconos en Fila)
 st.markdown("""
     <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .stApp { background-color: #f0f4f8; }
+    
+    /* Encabezado con Color */
+    .header-container {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        padding: 40px 20px;
+        border-radius: 0 0 30px 30px;
+        margin: -60px -20px 30px -20px;
+        text-align: center;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Fila de Iconos Horizontal en Móvil */
     .icon-row {
         display: flex;
         justify-content: space-around;
         background: white;
         padding: 15px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-radius: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
-    .icon-item { text-align: center; font-size: 0.8rem; font-weight: bold; color: #1e3a8a; }
-    .icon-emoji { font-size: 1.5rem; display: block; }
-    
+    .icon-item { text-align: center; font-size: 0.75rem; color: #1e3a8a; font-weight: bold; }
+    .icon-emoji { font-size: 1.4rem; display: block; }
+
+    /* Tarjetas con Fotos Reales */
     .card {
-        background: white;
-        border-radius: 15px;
-        padding: 15px;
-        margin-bottom: 15px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        border-left: 6px solid #3b82f6;
+        background-color: white;
+        border-radius: 25px;
+        overflow: hidden;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        border: 1px solid #e2e8f0;
+    }
+    .card-img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 20px; }
+    .card-title { font-size: 1.5rem; font-weight: bold; color: #1e293b; }
+    .badge {
+        background-color: #dbeafe; color: #1e40af;
+        padding: 4px 12px; border-radius: 10px;
+        font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
     }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🏔️ Guía Colbún Digital")
-
-# 3. FILA DE ICONOS (CORREGIDA PARA CELULAR)
+# 3. ENCABEZADO
 st.markdown("""
-<div class="icon-row">
-    <div class="icon-item"><span class="icon-emoji">🍴</span>Comer</div>
-    <div class="icon-item"><span class="icon-emoji">🏨</span>Dormir</div>
-    <div class="icon-item"><span class="icon-emoji">🧗</span>Tour</div>
-    <div class="icon-item"><span class="icon-emoji">🧶</span>Rari</div>
+<div class="header-container">
+    <h1 style='color: white; margin: 0; font-size: 2.2rem;'>🏔️ Guía Colbún Digital</h1>
+    <p style='color: #bfdbfe; font-weight: 500;'>Plataforma Turística de la Comuna de Colbún</p>
 </div>
 """, unsafe_allow_html=True)
 
-# 4. BASE DE DATOS ACTUALIZADA CON ENLACES REALES
+# 4. ICONOS EN FILA (Fuerza horizontal en móvil)
+st.markdown("""
+<div class="icon-row">
+    <div class="icon-item"><span class="icon-emoji">🍴</span>Restorán</div>
+    <div class="icon-item"><span class="icon-emoji">🏨</span>Hoteles</div>
+    <div class="icon-item"><span class="icon-emoji">🧶</span>Artesanía</div>
+    <div class="icon-item"><span class="icon-emoji">⛺</span>Camping</div>
+    <div class="icon-item"><span class="icon-emoji">🧗</span>Tours</div>
+</div>
+""", unsafe_allow_html=True)
+
+# 5. BASE DE DATOS AMPLIADA (Locales Reales)
 lugares = [
     {
-        "nombre": "Lodge Colbún",
-        "cat": "Hotel & Restorán",
-        "desc": "Ubicado a la orilla del lago, ideal para cenas y descanso.",
-        "maps": "https://www.google.com/maps/search/?api=1&query=Lodge+Colbun+Chile",
-        "tags": "lago, hotel, comida"
-    },
-    {
-        "nombre": "Borde Lago",
-        "cat": "Restorán",
-        "desc": "Exquisita comida con vista privilegiada al Lago Colbún.",
-        "maps": "https://www.google.com/maps/search/?api=1&query=Borde+Lago+Colbun",
-        "tags": "comida, vista, barato"
-    },
-    {
         "nombre": "Termas de Panimávida",
-        "cat": "Hotel & Termas",
-        "desc": "Clásico destino de relajo con aguas termales históricas.",
-        "maps": "https://www.google.com/maps/search/?api=1&query=Termas+de+Panimavida",
-        "tags": "termas, relajo, hotel"
+        "cat": "Hotel & Salud",
+        "desc": "Aguas medicinales históricas y relajo total.",
+        "foto": "https://p-u.popcdn.net/attachments/images/000/013/376/large/panimavida.jpg",
+        "maps": "https://www.google.com/maps/search/Termas+de+Panimavida"
     },
     {
-        "nombre": "Artesanías de Rari",
-        "cat": "Cultura",
-        "desc": "Conoce el tejido en crin único en el mundo.",
-        "maps": "https://www.google.com/maps/search/?api=1&query=Plaza+de+Rari+Colbun",
-        "tags": "artesania, rari, cultura"
+        "nombre": "Artesanía en Crin Rari",
+        "cat": "Artesanía",
+        "desc": "Conoce a las tejedoras de tesoros humanos vivos.",
+        "foto": "https://www.artesaniasdechile.cl/wp-content/uploads/2016/11/crin-rari.jpg",
+        "maps": "https://www.google.com/maps/search/Artesania+Rari"
+    },
+    {
+        "nombre": "Lodge Borde Lago",
+        "cat": "Restorán & Aventura",
+        "desc": "Excelente gastronomía con la mejor vista al Embalse Colbún.",
+        "foto": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+        "maps": "https://www.google.com/maps/search/Borde+Lago+Colbun"
+    },
+    {
+        "nombre": "Camping Los Bellotos",
+        "cat": "Camping",
+        "desc": "Naturaleza pura en el Cajón del Melado.",
+        "foto": "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800",
+        "maps": "https://www.google.com/maps/search/Reserva+Los+Bellotos"
     }
 ]
 
-# 5. BUSCADOR INTEGRADO
-query = st.text_input("¿Qué buscas hoy?", placeholder="Ej: hotel, comer, Rari...")
+# 6. BUSCADOR
+search = st.text_input("", placeholder="🔍 ¿Qué buscas hoy en Colbún?")
 
-# 6. DESPLIEGUE DE RESULTADOS
+# 7. DESPLIEGUE DE TARJETAS
 for l in lugares:
-    if query.lower() in l["nombre"].lower() or query.lower() in l["tags"]:
-        with st.container():
-            st.markdown(f"""
+    if search.lower() in l["nombre"].lower() or search.lower() in l["cat"].lower():
+        st.markdown(f"""
             <div class="card">
-                <small style="color: #3b82f6; font-weight: bold;">{l['cat']}</small>
-                <h3 style="margin: 5px 0;">{l['nombre']}</h3>
-                <p style="color: #555; font-size: 0.9rem;">{l['desc']}</p>
+                <img src="{l['foto']}" class="card-img">
+                <div class="card-content">
+                    <span class="badge">{l['cat']}</span>
+                    <div class="card-title">{l['nombre']}</div>
+                    <p style='color: #475569; font-size: 0.9rem;'>{l['desc']}</p>
+                </div>
             </div>
-            """, unsafe_allow_html=True)
-            st.link_button(f"🗺️ Ver ubicación de {l['nombre']}", l["maps"], use_container_width=True)
-            st.write("")
+        """, unsafe_allow_html=True)
+        st.link_button(f"📍 Ir a {l['nombre']}", l["maps"], use_container_width=True)
+        st.write("")
 
-# 7. PIE DE PÁGINA
-st.markdown("---")
-st.caption("Desarrollado por Maestro Solution - Digitalizando el turismo en el Maule.")
+# 8. FORMULARIO PARA NUEVOS CLIENTES (Maestro Solution)
+st.markdown("<br><hr>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #1e3a8a;'>📩 ¿Quieres que tu local aparezca aquí?</h2>", unsafe_allow_html=True)
+st.info("Forma parte de la red digital de Maestro Solution y llega a miles de turistas.")
+
+with st.form("contacto_cliente"):
+    nombre_local = st.text_input("Nombre del Local/Negocio")
+    rubro = st.selectbox("Rubro", ["Restorán", "Hotel", "Camping", "Artesanía", "Otros"])
+    whatsapp = st.text_input("WhatsApp de contacto")
+    if st.form_submit_button("Solicitar Registro"):
+        st.success(f"¡Gracias! Maestro Solution se contactará con {nombre_local} pronto.")
+        st.balloons()
+
+st.markdown("<p style='text-align: center; color: #94a3b8; padding: 20px;'>© 2026 Maestro Solution</p>", unsafe_allow_html=True)

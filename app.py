@@ -2,12 +2,12 @@ import streamlit as st
 
 # 1. CONFIGURACIÓN DE LA PÁGINA
 st.set_page_config(
-    page_title="Colbún Digital - Maestro Solution",
+    page_title="Guía Colbún Digital",
     layout="centered",
     initial_sidebar_state="collapsed"
 )
 
-# 2. DISEÑO VISUAL (CSS) - SIN LETRAS BLANCAS EN CONTENIDO
+# 2. DISEÑO VISUAL (CSS) - ENFOQUE EN LEGIBILIDAD Y ATRACTIVO
 st.markdown("""
     <style>
     #MainMenu {visibility: hidden;}
@@ -72,11 +72,11 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# 3. ENCABEZADO
+# 3. ENCABEZADO ACTUALIZADO
 st.markdown("""
 <div class="header-container">
-    <h1 style='color: white; margin: 0; font-size: 2.2rem;'>🏔️ COLBÚN DIGITAL</h1>
-    <p style='color: #bfdbfe; font-weight: 500;'>Plataforma Turística de Maestro Solution</p>
+    <h1 style='color: white; margin: 0; font-size: 2.2rem;'>🏔️ Guía Colbún Digital</h1>
+    <p style='color: #bfdbfe; font-weight: 500;'>Plataforma Turística de la Comuna de Colbún</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -92,8 +92,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 5. BASE DE DATOS COMPLETA (Categorías solicitadas)
-# Nota: Reemplaza los links por tus fotos reales una vez las subas a tu servidor/GitHub
+# 5. BASE DE DATOS AMPLIADA (Lugares, Locales, Restaurantes, Campings)
 lugares = [
     {
         "nombre": "Termas de Panimávida",
@@ -120,7 +119,7 @@ lugares = [
         "maps": "https://www.google.com/maps/search/Playa+Machicura"
     },
     {
-        "nombre": "Restaurante Sabores Locales",
+        "nombre": "Restaurante Raíces Maulinis",
         "cat": "Restaurantes",
         "desc": "Gastronomía típica: Pastel de choclo, humitas y vinos del Valle del Maule.",
         "precio": "$12.000 prom.",
@@ -134,6 +133,14 @@ lugares = [
         "precio": "$10.000 p/p",
         "foto": "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800",
         "maps": "https://www.google.com/maps/search/Reserva+Los+Bellotos+Colbun"
+    },
+    {
+        "nombre": "Termas de Quinamávida",
+        "cat": "Hotel & Termal",
+        "desc": "Piscinas termales y baños de barro tradicionales. Un lugar para el descanso familiar.",
+        "precio": "$35.000+",
+        "foto": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800",
+        "maps": "https://maps.app.goo.gl/9h2XG7yV6qG2"
     }
 ]
 
@@ -154,14 +161,13 @@ for l in lugares:
                 </div>
             </div>
         """, unsafe_allow_html=True)
-        # Botón funcional que abre Google Maps
         st.link_button(f"📍 Ir a {l['nombre']}", l["maps"], use_container_width=True)
         st.markdown("<br>", unsafe_allow_html=True)
 
-# 8. FORMULARIO DE CONTACTO (Para nuevos locales)
+# 8. FORMULARIO DE CONTACTO
 st.markdown("<br><hr>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center; color: #1e3a8a;'>📩 Registro de Locales</h2>", unsafe_allow_html=True)
-st.write("Si eres dueño de un restaurante, hotel o artesano, completa este formulario para aparecer en la App de Maestro Solution.")
+st.write("Si eres dueño de un restaurante, hotel o artesano, completa este formulario para aparecer en la App.")
 
 with st.form("registro_negocio"):
     col1, col2 = st.columns(2)

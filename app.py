@@ -109,3 +109,52 @@ lugares = [
     {
         "nombre": "Borde Lago Restaurante",
         "cat": "Restorán y Eventos",
+        "desc": "Disfruta de la mejor gastronomía con una vista privilegiada al Lago Colbún.",
+        "foto": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+        "maps": "https://www.google.com/maps/search/?api=1&query=Borde+Lago+Restaurante+Colbun"
+    }
+]
+
+# 6. BUSCADOR
+search = st.text_input("", placeholder="🔍 ¿Buscas playa, comida, artesanía o descanso?")
+
+# 7. LISTADO DE LUGARES CON FOTOS
+for l in lugares:
+    if search.lower() in l["nombre"].lower() or search.lower() in l["cat"].lower():
+        st.markdown(f"""
+            <div class="card">
+                <img src="{l['foto']}" class="card-img">
+                <div class="card-content">
+                    <span class="badge">{l['cat']}</span>
+                    <div class="card-title">{l['nombre']}</div>
+                    <p style='color: #4a5568; font-size: 1rem; line-height: 1.6;'>{l['desc']}</p>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+        st.link_button(f"📍 Cómo llegar a {l['nombre']}", l["maps"], use_container_width=True)
+        st.write("")
+
+# 8. VENTANA DE REGISTRO DESTACADA (Nuevos Clientes)
+st.markdown("""
+<div class="register-box">
+    <h2 style='color: white; margin: 0;'>🚀 ¿Quieres aparecer en esta App?</h2>
+    <p style='color: #d1fae5; font-size: 1.1rem; margin: 15px 0;'>
+        Si eres dueño de un hotel, restorán, camping o artesano, 
+        únete a la red digital de <b>Maestro Solution</b>.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+with st.form("registro_maestro"):
+    st.write("### Completa tus datos")
+    nombre_local = st.text_input("Nombre de tu Negocio")
+    rubro = st.selectbox("Categoría", ["Restorán", "Hotel", "Artesanía", "Camping", "Tour Operador"])
+    whatsapp = st.text_input("WhatsApp (ej: +569...)")
+    detalles = st.text_area("Cuéntanos brevemente qué ofreces")
+    
+    if st.form_submit_button("Solicitar Inscripción Gratis"):
+        st.success(f"¡Excelente! El equipo de Maestro Solution contactará a {nombre_local} a la brevedad.")
+        st.balloons()
+
+# 9. PIE DE PÁGINA
+st.markdown("<p style='text-align: center; color: #94a3b8; padding: 30px;'>© 2026 Maestro Solution - Innovación en Colbún</p>", unsafe_allow_html=True)

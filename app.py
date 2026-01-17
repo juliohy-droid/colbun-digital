@@ -1,136 +1,129 @@
 import streamlit as st
 
-# Configuración de la interfaz estilo App Móvil
-st.set_page_config(page_title="Colbún Digital - Maestro Solution", layout="centered")
+# Configuración de página para que parezca una App
+st.set_page_config(page_title="Colbún Digital", layout="centered", initial_sidebar_state="collapsed")
 
-# CSS para replicar la interfaz de la muestra (Tarjetas, sombras y bordes redondeados)
+# CSS Avanzado para diseño atractivo y moderno
 st.markdown("""
     <style>
-    /* Fondo de la aplicación */
-    .main { background-color: #f8f9fa; }
+    /* Ocultar elementos de Streamlit */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
     
-    /* Contenedor de Tarjeta */
-    .card {
-        background-color: white;
-        border-radius: 20px;
-        padding: 0px;
-        margin-bottom: 25px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        overflow: hidden;
-        border: 1px solid #eee;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Fondo degradado estilo moderno */
+    .stApp {
+        background: linear-gradient(180deg, #1a73e8 0%, #f8f9fa 30%);
     }
     
-    /* Imagen de la tarjeta */
+    /* Contenedor de Tarjeta Estilo Premium */
+    .card {
+        background-color: white;
+        border-radius: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+    .card:hover { transform: scale(1.02); }
+    
     .card-img {
         width: 100%;
-        height: 220px;
+        height: 200px;
         object-fit: cover;
     }
     
-    /* Contenido de la tarjeta */
-    .card-content { padding: 20px; }
+    .card-body { padding: 20px; }
     
-    /* Etiquetas de precio y beneficios */
-    .price-tag {
-        background-color: #2ecc71;
-        color: white;
-        padding: 6px 12px;
-        border-radius: 8px;
-        font-weight: bold;
-        font-size: 0.9em;
-    }
-    .benefit-badge {
-        background-color: #e8f4fd;
-        color: #1a73e8;
-        padding: 4px 10px;
-        border-radius: 6px;
-        font-size: 0.75em;
-        font-weight: 600;
-        margin-right: 5px;
-        text-transform: uppercase;
-    }
-    
-    /* Títulos */
     .card-title {
-        font-size: 1.4em;
-        font-weight: 700;
-        color: #2c3e50;
-        margin: 10px 0 5px 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1e3a8a;
+        margin-bottom: 5px;
     }
-    .card-desc {
-        color: #7f8c8d;
-        font-size: 0.95em;
-        line-height: 1.4;
+    
+    .price-badge {
+        background-color: #34d399;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-weight: bold;
+        float: right;
+    }
+    
+    .benefit-icon {
+        background-color: #dbeafe;
+        color: #1e40af;
+        padding: 5px 12px;
+        border-radius: 10px;
+        font-size: 0.8rem;
+        margin-right: 5px;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    
+    /* Título principal blanco */
+    .main-title {
+        color: white;
+        text-align: center;
+        font-family: 'Arial';
+        padding-top: 20px;
+        margin-bottom: 0;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# Encabezado con marca Maestro Solution
-st.markdown("<h1 style='text-align: center; color: #1a73e8; margin-bottom: 0;'>🏔️ COLBÚN DIGITAL</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #5f6368; font-size: 0.9em;'>Desarrollado por <b>Maestro Solution</b></p>", unsafe_allow_html=True)
+# Encabezado de la App
+st.markdown("<h1 class='main-title'>COLBÚN DIGITAL</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: rgba(255,255,255,0.8);'>Desarrollado por Maestro Solution</p>", unsafe_allow_html=True)
 
-# Buscador moderno
-search = st.text_input("", placeholder="🔍 Buscar lugares, servicios o beneficios...")
-
-# BASE DE DATOS ACTUALIZADA CON FOTOS REALES
+# Datos con imágenes reales de alta disponibilidad
 lugares = [
     {
-        "nombre": "LAGO MACHICURA",
-        "desc": "Balneario con playa inclusiva, ideal para disfrutar en familia, realizar kayak y picnic en un entorno seguro.",
+        "nombre": "Lago Machicura",
+        "desc": "Playa inclusiva perfecta para familias. Kayak y zonas de picnic.",
         "precio": "$3.500",
-        "imagen": "http://googleusercontent.com/image_collection/image_retrieval/17570824573581826884_0",
-        "beneficios": ["Familiar", "Inclusivo", "Deportes"]
+        "imagen": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+        "tags": ["Familiar", "Seguro"]
     },
     {
-        "nombre": "TERMAS DE PANIMÁVIDA",
-        "desc": "Centro termal histórico de la Región del Maule. Famoso por sus aguas medicinales y servicios de spa de alta calidad.",
+        "nombre": "Termas de Panimávida",
+        "desc": "Aguas termales curativas en un entorno histórico y relajante.",
         "precio": "$45.000",
-        "imagen": "http://googleusercontent.com/image_collection/image_retrieval/10697449738312351786_1",
-        "beneficios": ["Salud", "Relax", "Histórico"]
+        "imagen": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80",
+        "tags": ["Salud", "Relax"]
     },
     {
-        "nombre": "ARTESANÍA EN CRIN (RARI)",
-        "desc": "Visita a las artesanas de Rari, Tesoros Humanos Vivos que crean arte único con pelo de caballo.",
+        "nombre": "Rari: Cuna del Crin",
+        "desc": "Artesanía única en el mundo hecha a mano con pelo de caballo.",
         "precio": "Gratis",
-        "imagen": "http://googleusercontent.com/image_collection/image_retrieval/4766365399578229148_0",
-        "beneficios": ["Cultura", "Patrimonio", "Talleres"]
-    },
-    {
-        "nombre": "EMBALSE COLBÚN",
-        "desc": "El embalse más grande de la zona central, perfecto para fotografía, navegación y pesca deportiva.",
-        "precio": "Acceso Libre",
-        "imagen": "http://googleusercontent.com/image_collection/image_retrieval/2285668645853771830_0",
-        "beneficios": ["Paisajes", "Aventura", "Pesca"]
+        "imagen": "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=800&q=80",
+        "tags": ["Cultura", "Patrimonio"]
     }
 ]
 
-# Lógica de renderizado de las tarjetas
+# Buscador con diseño limpio
+search = st.text_input("", placeholder="🔍 ¿Qué buscas hoy en Colbún?")
+
+# Renderizado de la lista
 for lug in lugares:
     if search.lower() in lug["nombre"].lower() or search.lower() in lug["desc"].lower():
         st.markdown(f"""
             <div class="card">
                 <img src="{lug['imagen']}" class="card-img">
-                <div class="card-content">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span class="card-title">{lug['nombre']}</span>
-                        <span class="price-tag">{lug['precio']}</span>
-                    </div>
-                    <p class="card-desc">{lug['desc']}</p>
-                    <div style="margin-top: 15px;">
-                        {' '.join([f'<span class="benefit-badge">{b}</span>' for b in lug['beneficios']])}
+                <div class="card-body">
+                    <span class="price-badge">{lug['precio']}</span>
+                    <div class="card-title">{lug['nombre']}</div>
+                    <p style='color: #4b5563;'>{lug['desc']}</p>
+                    <div>
+                        {' '.join([f'<span class="benefit-icon">{t}</span>' for t in lug['tags']])}
                     </div>
                 </div>
             </div>
         """, unsafe_allow_html=True)
-        # Botón de acción por cada tarjeta
-        if st.button(f"Ver Mapa y Detalles de {lug['nombre']}", key=lug['nombre']):
-            st.info(f"Conectando con GPS para llegar a {lug['nombre']}...")
+        if st.button(f"Explorar {lug['nombre']}", key=lug['nombre']):
+            st.balloons()
+            st.info(f"Abriendo guía completa de {lug['nombre']}...")
 
-# Navegación inferior (Visual)
-st.markdown("---")
-col1, col2, col3, col4 = st.columns(4)
-col1.markdown("<p style='text-align:center;'>🏠<br><small>Inicio</small></p>", unsafe_allow_html=True)
-col2.markdown("<p style='text-align:center;'>📍<br><small>Mapa</small></p>", unsafe_allow_html=True)
-col3.markdown("<p style='text-align:center;'>🎟️<br><small>Cupones</small></p>", unsafe_allow_html=True)
-col4.markdown("<p style='text-align:center;'>👤<br><small>Perfil</small></p>", unsafe_allow_html=True)
+# Barra de navegación estética al final
+st.markdown("<br><p style='text-align: center; color: #9ca3af;'>🏠 Inicio | 📍 Mapa | 🎟️ Cupones</p>", unsafe_allow_html=True)
